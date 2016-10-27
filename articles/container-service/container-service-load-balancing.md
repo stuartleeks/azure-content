@@ -91,7 +91,8 @@ Now that we have the marathon-lb package, we can deploy an application container
   "labels":{
     "HAPROXY_GROUP":"external",
     "HAPROXY_0_VHOST":"YOUR FQDN",
-    "HAPROXY_0_MODE":"http"
+    "HAPROXY_0_MODE":"http",
+    "HAPROXY_0_BACKEND_HTTP_HEALTHCHECK_OPTIONS": "  option  httpchk GET {healthCheckPath} HTTP/1.1\\r\\nHost:\\ {hostname} timeout check {healthCheckTimeoutSeconds}s"
   }
 }
 
@@ -102,6 +103,7 @@ Now that we have the marathon-lb package, we can deploy an application container
   * Set the `HAPROXY_GROUP` label to "external".
   * Set `hostPort` to 0. This means that Marathon will arbitrarily allocate an available port.
   * Set `instances` to the number of instances you want to create. You can always scale these up and down later.
+  * Set `HAPROXY_0_BACKEND_HTTP_HEALTHCHECK_OPTIONS` to configure tbe marathon-lb health check, e.g. to use HTTP/1.1 and include the host name. See more examples on the [marathon-lb wiki](https://github.com/mesosphere/marathon-lb/wiki)
 
 It is worth noing that by default Marathon will deploy to the private cluster, this means that the above deployment will only be accessible via your load balancer, which is usually the behavior we desire.
 
