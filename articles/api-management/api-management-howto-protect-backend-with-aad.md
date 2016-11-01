@@ -185,6 +185,7 @@ Operations can be [added to APIs manually](api-management-howto-add-operations.m
 
 Create a file named `calcapi.json` with following contents and save it to your computer. Ensure that the `host` attribute points to your Web API backend. In this example `"host": "apimaaddemo.azurewebsites.net"` is used.
 
+```json
 {
 "swagger": "2.0",
 "info": {
@@ -316,6 +317,7 @@ Create a file named `calcapi.json` with following contents and save it to your c
 		}
 	  }
 	}
+```
 
 To import the calculator API, click **APIs** from the **API Management** menu on the left, and then click **Import API**.
 
